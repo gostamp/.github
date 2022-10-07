@@ -31,5 +31,4 @@ Here are a few things you can do that will increase the likelihood of your pull 
 - [Using Pull Requests](https://help.github.com/articles/about-pull-requests/)
 - [GitHub Help](https://help.github.com)
 
-
 _Credit: This document was originally copied from GitHub's [CONTRIBUTING](https://github.com/github/.github/blob/master/CONTRIBUTING.md) file._
