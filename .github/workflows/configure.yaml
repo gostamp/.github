@@ -1,10 +1,10 @@
 ---
-name: Configure all repos
+name: configure
 
 on:
   schedule:
-    # Hourly on the 12m mark
-    - cron: "12 * * * *"
+    # Daily at 10:12am.
+    - cron: "10 12 * * *"
   push:
     branches:
       - "main"
