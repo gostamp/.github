@@ -1,0 +1,25 @@
+---
+name: Configure all repos
+
+on:
+  schedule:
+    # Hourly on the 12m mark
+    - cron: "12 * * * *"
+  push:
+    branches:
+      - "main"
+    paths:
+      - ".github/config/*"
+      - ".github/workflows/configure.yaml"
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ".github/config/configure.sh"
+        env:
+          GITHUB_TOKEN: "${{ secrets.CONFIGURE_REPOS_TOKEN }}"
