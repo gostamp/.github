@@ -4,20 +4,16 @@ set -o errexit -o errtrace -o nounset -o pipefail
 org_name="gostamp"
 repos="$(gh repo list "${org_name}" --source --json nameWithOwner --jq '.[].nameWithOwner')"
 
-echo "::group::Repos to configure:"
-echo "${repos}"
-echo "::endgroup::"
-
-# shellcheck disable=SC2086
-echo "# Configured the following repos :wrench:" >>$GITHUB_STEP_SUMMARY
-# shellcheck disable=SC2086
-echo "" >>$GITHUB_STEP_SUMMARY
+{
+    echo ""
+    echo "Configured the following repos :wrench: :tada:"
+    echo ""
+} >>"${GITHUB_STEP_SUMMARY}"
 
 for repo in $repos; do
     export GH_REPO="${repo}"
 
-    # shellcheck disable=SC2086
-    echo "- ${repo}" >>$GITHUB_STEP_SUMMARY
+    echo "- [${repo}](https://github.com/${repo})" >>"${GITHUB_STEP_SUMMARY}"
 
     echo "[${repo}] Configuring repo"
     gh api -X PATCH /repos/:owner/:repo \
@@ -63,3 +59,12 @@ for repo in $repos; do
 
     echo ""
 done
+
+{
+    echo ""
+    echo "Using"
+    echo ""
+    echo "- [branch-protection.json](https://github.com/gostamp/.github/blob/main/.github/config/branch-protection.json)"
+    echo "- [repo.json](https://github.com/gostamp/.github/blob/main/.github/config/repo.json)"
+    echo ""
+} >>"${GITHUB_STEP_SUMMARY}"
