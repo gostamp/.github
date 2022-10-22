@@ -1,5 +1,12 @@
 {
-    "required_status_checks": null,
+    "required_status_checks": {
+        "strict": true,
+        "checks": [
+            {
+                "context": "build"
+            }
+        ]
+    },
     "enforce_admins": false,
     "required_pull_request_reviews": {
         "dismissal_restrictions": {
