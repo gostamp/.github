@@ -2,7 +2,7 @@
 set -o errexit -o errtrace -o nounset -o pipefail
 
 org_name="gostamp"
-repos="$(gh repo list "${org_name}" --source --json nameWithOwner --jq '.[].nameWithOwner')"
+repos="$(gh repo list "${org_name}" --source --no-archived --json nameWithOwner --jq '.[].nameWithOwner')"
 
 {
     echo ""
